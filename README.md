@@ -54,7 +54,7 @@ output.html:
 You can change the prefix (for example using lua comments `-- #` instead of `#`):
 
 ```
-$ ./meta.awk input.txt "--" > output.lua
+$ ./meta.awk input.txt "-- #" > output.lua
 ```
 
 ## Why awk 
