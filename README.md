@@ -11,6 +11,7 @@
 ```
 
 Tiny awk util, huge potential.
+#preprocessor #awk #permacomputing #lite
 
 ## Usage (Basic templates)
 
