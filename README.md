@@ -49,7 +49,7 @@ output.html:
 </ul>
 ```
 
-## Target C/Lua/Nelua/Rust etc
+## Custom preprocessor 
 
 You can change the prefix (for example using lua comments `-- #` instead of `#`).
 This allows for generating to various language-dialects from one source-file: 
