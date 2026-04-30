@@ -43,7 +43,7 @@ output.html:
 ## Multilanguage preprocessor 
 
 You can change the prefix (`#`) to fit other languages better.
-Here a 3-in-1 demo which generates nelua/redbean-specific code from lua-code:
+Here's a 3-in-1 demo which generates nelua/redbean-specific code from lua-code:
 
 ```bash
 $ target=redbean meta.awk input.lua '--|' > out.redbean.lua
