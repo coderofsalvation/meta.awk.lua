@@ -1,7 +1,7 @@
 --| target = ENVIRON["target"]
 
 --| if( target == "nelua" ){
---|   print("local a: Person =")
+local a: Person =
 --| }else{
 local a =
 --| }

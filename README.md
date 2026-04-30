@@ -12,7 +12,7 @@
 
 Tiny awk util, huge potential.
 
-## Usage
+## Usage (Basic templates)
 
 ```bash
 $ ./meta.awk input.html > output.html
@@ -56,7 +56,7 @@ input.lua:
 --| target = ENVIRON["target"]
 
 --| if( target == "nelua" ){
---|   print("local a: Person =")
+local a: Person =
 --| }else{
 local a =
 --| }
@@ -100,6 +100,10 @@ local a =
 
 function LaunchBrowser() return false; end  -- dummy function
 ```
+
+## Why
+
+Lua is awesome, and its various cool dialects (teal / nelua) allow targeting web/games/esp32 from the same lua-code.
 
 ## Why awk 
 
