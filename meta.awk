@@ -6,13 +6,13 @@ BEGIN {
     print "BEGIN {" > generator;
     trigger_esc = trigger;
     gsub(/[[\]{}()*+?^$|.\\]/, "\\\\&", trigger_esc);
-    pattern = "^" trigger_esc "[ \t]*";
+    pattern = trigger_esc ;
 }
 
 {
-    if ($0 ~ "^" trigger_esc) {
+    if ($0 ~ "(^|[ ])" trigger_esc) {
         line = $0;
-        sub(pattern, "", line);
+        sub(".*"pattern, "", line);
         print line >> generator;
     } else {
         gsub(/\\/, "\\\\", $0);

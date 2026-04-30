@@ -15,7 +15,7 @@ Tiny awk util, huge potential.
 ## Usage
 
 ```bash
-$ ./meta.awk input.txt > output.html
+$ ./meta.awk input.html > output.html
 ```
 
 ```html
@@ -49,12 +49,37 @@ output.html:
 </ul>
 ```
 
-## Target C/Lua/Rust etc
+## Target C/Lua/Nelua/Rust etc
 
-You can change the prefix (for example using lua comments `-- #` instead of `#`):
+You can change the prefix (for example using lua comments `-- #` instead of `#`).
+This allows for generating to various language-dialects from one source-file: 
 
+```bash
+meta.awk input.lua '--nelua' > output.nelua
 ```
-$ ./meta.awk input.txt "-- #" > output.lua
+
+input.lua:
+```lua
+--nelua print("local Person = @record{name: string, age: integer}")
+local a --nelua print("local a: Person")
+ = {name = "Mark", age = 20}
+
+--nelua for( i = 0; i < 2; i++ ){
+print(a.name, a.age)
+print("hello world")
+--nelua }
+```
+
+output.nelua:
+```lua
+local Person = @record{name: string, age: integer}
+local a: Person
+ = {name = "Mark", age = 20}
+
+print(a.name, a.age)
+print("hello world")
+print(a.name, a.age)
+print("hello world")
 ```
 
 ## Why awk 
