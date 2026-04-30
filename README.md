@@ -20,7 +20,7 @@ $ ./meta.awk input.html > output.html
 
 ```html
 <ul>
-# for( i = 0; i < 5; i++ ){
+# for( i = 0; i < 2; i++ ){
   <li>
 #   print("   "i) 
   </li>
@@ -49,37 +49,65 @@ output.html:
 </ul>
 ```
 
-## Custom preprocessor 
+## Multilanguage preprocessor 
 
-You can change the prefix (for example using lua comments `-- #` instead of `#`).
-This allows for generating to various language-dialects from one source-file: 
+You can change the prefix (`#`) to fit other languages better.
+Here a 3-in-1 demo which generates nelua/redbean-specific code from lua-code:
 
 ```bash
-meta.awk input.lua '--nelua' > output.nelua
+$ target=redbean meta.awk input.lua '--|' > out.redbean.lua
+$ target=nelua   meta.awk input.lua '--|' > out.nelua 
+$ target=lua     meta.awk input.lua '--|' > out.lua 
 ```
 
 input.lua:
 ```lua
---nelua print("local Person = @record{name: string, age: integer}")
-local a --nelua print("local a: Person")
- = {name = "Mark", age = 20}
+--| target = ENVIRON["target"]
 
---nelua for( i = 0; i < 2; i++ ){
+--| if( target == "nelua" ){
+--|   print("local a: Person =")
+--| }else{
+local a =
+--| }
+{name = "Mark", age = 20}
+
+--| if( target != "redbean" ){
+function LaunchBrowser() return false; end  -- dummy function
+--| }
+
+--| if( target == "nelua" ){
+--|   for( i = 0; i < 2; i++ ){
 print(a.name, a.age)
 print("hello world")
---nelua }
+--|   }
+--| }
 ```
 
-output.nelua:
+out.nelua:
 ```lua
-local Person = @record{name: string, age: integer}
-local a: Person
- = {name = "Mark", age = 20}
+local a: Person =
+{name = "Mark", age = 20}
+
+function LaunchBrowser() return false; end  -- dummy function
 
 print(a.name, a.age)
 print("hello world")
 print(a.name, a.age)
 print("hello world")
+```
+
+out.redbean.lua:
+```lua
+local a =
+{name = "Mark", age = 20}
+```
+
+out.lua:
+```lua
+local a =
+{name = "Mark", age = 20}
+
+function LaunchBrowser() return false; end  -- dummy function
 ```
 
 ## Why awk 

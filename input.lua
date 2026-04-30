@@ -1,9 +1,19 @@
--- 
---nelua print("local Person = @record{name: string, age: integer}")
-local a --nelua print("local a: Person")
- = {name = "Mark", age = 20}
+--| target = ENVIRON["target"]
 
---nelua for( i = 0; i < 2; i++ ){
+--| if( target == "nelua" ){
+--|   print("local a: Person =")
+--| }else{
+local a =
+--| }
+{name = "Mark", age = 20}
+
+--| if( target != "redbean" ){
+function LaunchBrowser() return false; end  -- dummy function
+--| }
+
+--| if( target == "nelua" ){
+--|   for( i = 0; i < 2; i++ ){
 print(a.name, a.age)
 print("hello world")
---nelua }
+--|   }
+--| }
