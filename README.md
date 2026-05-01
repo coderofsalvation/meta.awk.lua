@@ -1,4 +1,4 @@
-# Metaprogramming code-generator in ~700 bytes 
+# Metaprogramming code-generators in ~700 bytes 
 
 ```bash
 ▓▓▓ ▒▒▒ ▒▒▒ ▓▓▓ ███
@@ -10,13 +10,16 @@
 ▒▒▒ ▓▓▓ ███ ▓▓▓ ▒▒▒ awk metaprogrammer 
 ```
 
-Tiny awk util, huge potential.
-#preprocessor #awk #permacomputing #lite
+Tiny scripts, huge potential.
+#preprocessor #awk #lua #permacomputing #lite
 
 ## Usage (Basic templates)
 
+> **NOTE**: `meta.awk` and `meta.lua` are interchangable. For exotic operating systems without lua/awk: use the portable [crossplatform awk/lua binaries](https://cosmo.zip/pub/cosmos/bin/) thanks to [cosmopolitan libc](https://justine.lol/cosmopolitan/)♥)
+
 ```bash
 $ ./meta.awk input.html > output.html
+$ ./meta.lua input.html > output.html
 ```
 
 ```html
@@ -47,67 +50,67 @@ You can change the prefix (`#`) to fit other languages better.
 Here's a 3-in-1 demo which generates nelua/redbean-specific code from lua-code:
 
 ```bash
-$ target=redbean meta.awk input.lua '--|' > out.redbean.lua
-$ target=nelua   meta.awk input.lua '--|' > out.nelua 
-$ target=lua     meta.awk input.lua '--|' > out.lua 
+$ target=redbean meta.lua input.lua '--|' > out.redbean.lua
+$ target=nelua   meta.lua input.lua '--|' > out.nelua 
+$ target=lua     meta.lua input.lua '--|' > out.lua 
 ```
 
 input.lua:
 ```lua
---| target = ENVIRON["target"]
-
---| if( target == "nelua" ){
+--| target = os.getenv("target")
+--| if target == "nelua" then
 local a: Person =
---| }else{
+--| else
 local a =
---| }
+--| end
 {name = "Mark", age = 20}
 
---| if( target != "redbean" ){
+--| if target ~= "redbean" then
 function LaunchBrowser() return false; end  -- dummy function
---| }
+--| end
 
---| if( target == "nelua" ){
---|   for( i = 0; i < 2; i++ ){
 print(a.name, a.age)
-print("hello world")
---|   }
---| }
+print("hello world from $(target)")
 ```
 
 out.nelua:
 ```lua
 local a: Person =
 {name = "Mark", age = 20}
-
 function LaunchBrowser() return false; end  -- dummy function
 
 print(a.name, a.age)
-print("hello world")
-print(a.name, a.age)
-print("hello world")
+print("hello world from nelua")
+
 ```
 
 out.redbean.lua:
 ```lua
 local a =
 {name = "Mark", age = 20}
+
+print(a.name, a.age)
+print("hello world from redbean")
+
 ```
 
 out.lua:
 ```lua
 local a =
 {name = "Mark", age = 20}
-
 function LaunchBrowser() return false; end  -- dummy function
+
+print(a.name, a.age)
+print("hello world from lua")
+
 ```
 
 ## Why
 
 Lua is awesome, and its various cool dialects (teal / nelua) allow targeting web/games/esp32 from the same lua-code.
 
-## Why awk 
+## Why awk/lua for metaprogramming
 
-It's tiny but everywhere..all linux distros..busybox..etc
+They're tiny but usually preinstalled on many Os'ses..linux distros..busybox..etc
 
 > tip: check [cosmpolitan libc](https://justine.lol/cosmopolitan/) awk-version here: https://cosmo.zip/pub/cosmos/bin

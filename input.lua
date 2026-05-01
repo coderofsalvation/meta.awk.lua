@@ -1,19 +1,14 @@
---| target = ENVIRON["target"]
-
---| if( target == "nelua" ){
+--| target = os.getenv("target")
+--| if target == "nelua" then
 local a: Person =
---| }else{
+--| else
 local a =
---| }
+--| end
 {name = "Mark", age = 20}
 
---| if( target != "redbean" ){
+--| if target ~= "redbean" then
 function LaunchBrowser() return false; end  -- dummy function
---| }
+--| end
 
---| if( target == "nelua" ){
---|   for( i = 0; i < 2; i++ ){
 print(a.name, a.age)
-print("hello world")
---|   }
---| }
+print("hello world from $(target)")
