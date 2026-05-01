@@ -15,7 +15,7 @@ Tiny scripts, huge potential.
 
 ## Usage (Basic templates)
 
-> **NOTE**: `meta.awk` and `meta.lua` are interchangable. For exotic operating systems without lua/awk: use the portable [crossplatform awk/lua binaries](https://cosmo.zip/pub/cosmos/bin/) thanks to [cosmopolitan libc](https://justine.lol/cosmopolitan/)♥)
+> **NOTE**: `meta.awk` and `meta.lua` are interchangable. For exotic operating systems without lua/awk: [check here](#portablebinaries)
 
 ```bash
 $ ./meta.awk input.html > output.html
@@ -105,12 +105,15 @@ print("hello world from lua")
 
 ```
 
+## Portable binaries
+
+Chances are your OS already has lua/awk installed.
+However:
+
+> TIP: see portable [crossplatform awk/lua binaries](https://cosmo.zip/pub/cosmos/bin/) thanks to [cosmopolitan libc](https://justine.lol/cosmopolitan/)♥) (don't forget to run `chmod +x awk lua`)
+
+
 ## Why
 
-Lua is awesome, and its various cool dialects (teal / nelua) allow targeting web/games/esp32 from the same lua-code.
-
-## Why awk/lua for metaprogramming
-
-They're tiny but usually preinstalled on many Os'ses..linux distros..busybox..etc
-
-> tip: check [cosmpolitan libc](https://justine.lol/cosmopolitan/) awk-version here: https://cosmo.zip/pub/cosmos/bin
+AWK is awesome, its tiny and usually preinstalled on many Os'ses..linux distros..busybox..etc
+Lua is awesome, and tiny and has various cool dialects (teal / nelua) allow targeting web/games/esp32 from the same lua-code.
