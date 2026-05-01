@@ -15,7 +15,7 @@ Tiny scripts, huge potential.
 
 ## Usage (Basic templates)
 
-> **NOTE**: `meta.awk` and `meta.lua` are interchangable. For exotic operating systems without lua/awk: [check here](#portablebinaries)
+> **NOTE**: `meta.awk` and `meta.lua` are interchangable. For exotic operating systems without lua/awk: [check here](#portable-binaries)
 
 ```bash
 $ ./meta.awk input.html > output.html
